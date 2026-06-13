@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HealthGPT AI Assistant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    min-height:100vh;
+    overflow:hidden;
+}
+
+/* Animated Background */
+
+.bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+}
+
+.glow1{
+    width:400px;
+    height:400px;
+    background:#2563eb;
+    top:-100px;
+    left:-100px;
+}
+
+.glow2{
+    width:350px;
+    height:350px;
+    background:#2e3abe;
+    right:-100px;
+    bottom:-100px;
+}
+
+/* Layout */
+
+.wrapper{
+    display:grid;
+    grid-template-columns:320px 1fr;
+    height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(20px);
+    border-right:1px solid rgba(255,255,255,.08);
+    padding:30px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:50px;
+}
+
+.logo-icon{
+    width:50px;
+    height:50px;
+    border-radius:15px;
+    background:linear-gradient(135deg,#2014a5,#2563eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.menu-item{
+    padding:15px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.menu-item:hover{
+    background:rgba(255,255,255,.08);
+}
+
+.active{
+    background:linear-gradient(90deg,#2563eb,#2b3fc5);
+}
+
+/* Main */
+
+.main{
+    padding:35px;
+    display:flex;
+    flex-direction:column;
+}
+
+/* Hero */
+
+.hero{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.hero-left h1{
+    font-size:3rem;
+}
+
+.hero-left p{
+    color:#94a3b8;
+    margin-top:10px;
+}
+
+.status{
+    background:#0f172a;
+    border:1px solid #2956c9;
+    color:#3133b8;
+    padding:10px 20px;
+    border-radius:30px;
+}
+
+/* Stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:25px;
+    padding:25px;
+}
+
+.card h2{
+    font-size:2rem;
+}
+
+.card p{
+    color:#94a3b8;
+}
+
+/* Chat Area */
+
+.chat-container{
+    flex:1;
+    background:rgba(255,255,255,.05);
+    border-radius:30px;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+    0 0 30px rgba(37,99,235,.15);
+}
+
+#root{
+    width:100%;
+    height:100%;
+}
+
+/* Mobile */
+
+@media(max-width:1000px){
+
+.wrapper{
+    grid-template-columns:1fr;
+}
+
+.sidebar{
+    display:none;
+}
+
+.stats{
+    grid-template-columns:1fr;
+}
+
+.hero{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.hero-left h1{
+    font-size:2rem;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+</div>
+
+<div class="wrapper">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">🏥</div>
+            HealthGPT
+        </div>
+
+        <div class="menu">
+            <div class="menu-item active">🤖 AI Assistant</div>
+            <div class="menu-item">🩺 Symptom Checker</div>
+            <div class="menu-item">💊 Medications</div>
+            <div class="menu-item">❤️ Wellness</div>
+            <div class="menu-item">📊 Health Reports</div>
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <div class="hero">
+
+            <div class="hero-left">
+                <h1>AI Healthcare Assistant</h1>
+                <p>Smart medical guidance powered by IBM watsonx Orchestrate</p>
+            </div>
+
+            <div class="status">
+                ● Assistant Online
+            </div>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="card">
+                <h2>24/7</h2>
+                <p>Availability</p>
+            </div>
+
+            <div class="card">
+                <h2>AI</h2>
+                <p>Powered Healthcare</p>
+            </div>
+
+            <div class="card">
+                <h2>⚡</h2>
+                <p>Instant Responses</p>
+            </div>
+
+        </div>
+
+        <div class="chat-container">
+            <div id="root"></div>
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+
+window.wxOConfiguration = {
+    orchestrationID: "60f19b47e81e4ad4be3697d6d26326f1_b00a005f-0c75-4c06-a570-6c0cc73a6f73",
+    hostURL: "https://au-syd.watson-orchestrate.cloud.ibm.com",
+    rootElementID: "root",
+    deploymentPlatform: "ibmcloud",
+    crn: "crn:v1:bluemix:public:watsonx-orchestrate:au-syd:a/60f19b47e81e4ad4be3697d6d26326f1:b00a005f-0c75-4c06-a570-6c0cc73a6f73::",
+
+    chatOptions:{
+        agentId:"d3ea2285-fb52-43c4-951f-a8508eea8694",
+        agentEnvironmentId:"6131cf87-0173-4118-8dbf-9634c39ccd23",
+
+        initialQuickStartPrompts:[
+            "I have had a mild fever and a sore throat for two days. What should I do?",
+            "What are some safe home remedies for an upset stomach and mild nausea?",
+            "When does a persistent cough require an immediate doctor's visit?"
+        ]
+    }
+};
+
+const script = document.createElement("script");
+script.src =
+`${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+
+script.onload = () => {
+    if(window.wxoLoader){
+        wxoLoader.init();
+    }
+};
+
+document.body.appendChild(script);
+
+</script>
+
+</body>
+</html>
